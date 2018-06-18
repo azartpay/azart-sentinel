@@ -2,11 +2,11 @@
 
 An all-powerful toolset for Azart.
 
-Sentinel is an autonomous agent for persisting, processing and automating Azart V12.1 governance objects and tasks, and for expanded functions in the upcoming Azart V13 release (Evolution).
+Sentinel is an autonomous agent for persisting, processing and automating Azart governance objects and tasks.
 
-Sentinel is implemented as a Python application that binds to a local version 12.1 azartd instance on each Azart V12.1 Masternode.
+Sentinel is implemented as a Python application that binds to a local version 0.12.3.3 azartd instance on each Azart 0.12.3.3 Masternode.
 
-This guide covers installing Sentinel onto an existing 12.1 Masternode in Ubuntu 14.04 / 16.04.
+This guide covers installing Sentinel onto an existing 0.12.3.3 Masternode in Ubuntu 14.04 / 16.04.
 
 ## Installation
 
@@ -21,7 +21,7 @@ Update system packages and ensure virtualenv is installed:
     $ sudo apt-get update
     $ sudo apt-get -y install python-virtualenv
 
-Make sure the local Azart daemon running is at least version 12.1 (120100)
+Make sure the local Azart daemon running is at least version 0.12.3.3
 
     $ azart-cli getinfo | grep version
 
