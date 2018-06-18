@@ -34,7 +34,7 @@ Set up a crontab entry to call Sentinel every minute:
 
     $ crontab -e
 
-In the crontab editor, add the lines below, replacing '/home/YOURUSERNAME/azart-sentinel' to the path where you cloned azart-sentinel to:
+In the crontab editor, add the lines below, replacing '/opt/azart-sentinel' to the path where you cloned azart-sentinel to:
 
     * * * * * cd /opt/azart-sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
 
