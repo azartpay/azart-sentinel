@@ -16,15 +16,6 @@ Make sure Python version 2.7.x or above is installed:
 
     python --version
 
-Update system packages and ensure virtualenv is installed:
-
-    $ sudo apt-get update
-    $ sudo apt-get -y install python-virtualenv
-
-Make sure the local Azart daemon running is at least version 0.12.3.3
-
-    $ azart-cli getinfo | grep version
-
 ### 2. Install Sentinel
 
 Clone the Sentinel repo and install Python dependencies.
