@@ -35,8 +35,7 @@ Clone the Sentinel repo and install Python dependencies.
     git clone https://github.com/azartpay/azart-sentinel azart-sentinel && \
     cd azart-sentinel && \
     virtualenv ./venv && \
-    ./venv/bin/pip install -r requirements.txt && \
-    crontab -e
+    ./venv/bin/pip install -r requirements.txt
 
 ### 3. Set up Cron
 
