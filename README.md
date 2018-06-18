@@ -29,9 +29,14 @@ Make sure the local Azart daemon running is at least version 0.12.3.3
 
 Clone the Sentinel repo and install Python dependencies.
 
-    $ git clone https://github.com/azartpay/azart-sentinel.git && cd azart-sentinel
-    $ virtualenv ./venv
-    $ ./venv/bin/pip install -r requirements.txt
+    apt-get update && \
+    apt-get -y install python-virtualenv && \
+    cd /opt && \
+    git clone https://github.com/azartpay/azart-sentinel azart-sentinel && \
+    cd azart-sentinel && \
+    virtualenv ./venv && \
+    ./venv/bin/pip install -r requirements.txt && \
+    crontab -e
 
 ### 3. Set up Cron
 
@@ -41,7 +46,7 @@ Set up a crontab entry to call Sentinel every minute:
 
 In the crontab editor, add the lines below, replacing '/home/YOURUSERNAME/azart-sentinel' to the path where you cloned azart-sentinel to:
 
-    * * * * * cd /home/YOURUSERNAME/azart-sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+    * * * * * cd /opt/azart-sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
 
 ### 4. Test the Configuration
 
