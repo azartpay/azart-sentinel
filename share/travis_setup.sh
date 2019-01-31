@@ -1,9 +1,9 @@
 #!/bin/bash
 set -evx
 
-mkdir ~/.azartcore
+mkdir ~/.azartpay
 
 # safety check
-if [ ! -f ~/.azartcore/.azart.conf ]; then
-  cp share/azart.conf.example ~/.azartcore/azart.conf
+if [ ! -f ~/.azartpay/.azart.conf ]; then
+  cp share/azart.conf.example ~/.azartpay/azart.conf
 fi

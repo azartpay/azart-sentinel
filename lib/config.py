@@ -16,13 +16,13 @@ min_azartd_proto_version_with_sentinel_ping = 70207
 
 def get_azart_conf():
     if sys.platform == 'win32':
-        azart_conf = os.path.join(os.getenv('APPDATA'), "AzartCore/azart.conf")
+        azart_conf = os.path.join(os.getenv('APPDATA'), "AzartPay/azart.conf")
     else:
         home = os.environ.get('HOME')
 
-        azart_conf = os.path.join(home, ".azartcore/azart.conf")
+        azart_conf = os.path.join(home, ".azartpay/azart.conf")
         if sys.platform == 'darwin':
-            azart_conf = os.path.join(home, "Library/Application Support/AzartCore/azart.conf")
+            azart_conf = os.path.join(home, "Library/Application Support/AzartPay/azart.conf")
 
     azart_conf = sentinel_cfg.get('azart_conf', azart_conf)
 
