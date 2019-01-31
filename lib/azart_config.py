@@ -15,7 +15,7 @@ class AzartConfig():
         f = io.open(filename)
         lines = []
         for line in f:
-            if re.match('^\s*#', line):
+            if re.match(r'^\s*#', line):
                 continue
             lines.append(line)
         f.close()
@@ -34,7 +34,7 @@ class AzartConfig():
         creds = {key: value for (key, value) in match}
 
         # standard Azart defaults...
-        default_port = 9798 if (network == 'mainnet') else 19798
+        default_port = 9998 if (network == 'mainnet') else 19998
 
         # use default port for network if not specified in azart.conf
         if not ('port' in creds):

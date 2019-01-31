@@ -59,10 +59,26 @@ def test_get_rpc_creds():
         assert key in creds
     assert creds.get('user') == 'azartrpc'
     assert creds.get('password') == 'EwJeV3fZTyTVozdECF627BkBMnNDwQaVLakG3A4wXYyk'
-    assert creds.get('port') == 19798
+    assert creds.get('port') == 19998
 
 
-# ensure azart network (mainnet, testnet) matches that specified in config
-# requires running azartd on whatever port specified...
-#
-# This is more of a azartd/jsonrpc test than a config test...
+def test_slurp_config_file():
+    import tempfile
+
+    azart_config = """# basic settings
+#testnet=1 # TESTNET
+server=1
+printtoconsole=1
+txindex=1 # enable transaction index
+"""
+
+    expected_stripped_config = """server=1
+printtoconsole=1
+txindex=1 # enable transaction index
+"""
+
+    with tempfile.NamedTemporaryFile(mode='w') as temp:
+        temp.write(azart_config)
+        temp.flush()
+        conf = AzartConfig.slurp_config_file(temp.name)
+        assert conf == expected_stripped_config

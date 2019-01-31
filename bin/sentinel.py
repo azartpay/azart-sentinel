@@ -6,7 +6,7 @@ import init
 import config
 import misc
 from azartd import AzartDaemon
-from models import Superblock, Proposal, GovernanceObject, Watchdog
+from models import Superblock, Proposal, GovernanceObject
 from models import VoteSignals, VoteOutcomes, Transient
 import socket
 from misc import printdbg
@@ -22,42 +22,6 @@ import argparse
 # sync azartd gobject list with our local relational DB backend
 def perform_azartd_object_sync(azartd):
     GovernanceObject.sync(azartd)
-
-
-# delete old watchdog objects, create new when necessary
-def watchdog_check(azartd):
-    printdbg("in watchdog_check")
-
-    # delete expired watchdogs
-    for wd in Watchdog.expired(azartd):
-        printdbg("\tFound expired watchdog [%s], voting to delete" % wd.object_hash)
-        wd.vote(azartd, VoteSignals.delete, VoteOutcomes.yes)
-
-    # now, get all the active ones...
-    active_wd = Watchdog.active(azartd)
-    active_count = active_wd.count()
-
-    # none exist, submit a new one to the network
-    if 0 == active_count:
-        # create/submit one
-        printdbg("\tNo watchdogs exist... submitting new one.")
-        wd = Watchdog(created_at=int(time.time()))
-        wd.submit(azartd)
-
-    else:
-        wd_list = sorted(active_wd, key=lambda wd: wd.object_hash)
-
-        # highest hash wins
-        winner = wd_list.pop()
-        printdbg("\tFound winning watchdog [%s], voting VALID" % winner.object_hash)
-        winner.vote(azartd, VoteSignals.valid, VoteOutcomes.yes)
-
-        # if remaining Watchdogs exist in the list, vote delete
-        for wd in wd_list:
-            printdbg("\tFound losing watchdog [%s], voting DELETE" % wd.object_hash)
-            wd.vote(azartd, VoteSignals.delete, VoteOutcomes.yes)
-
-    printdbg("leaving watchdog_check")
 
 
 def prune_expired_proposals(azartd):
@@ -207,9 +171,6 @@ def main():
 
     if azartd.has_sentinel_ping:
         sentinel_ping(azartd)
-    else:
-        # delete old watchdog objects, create a new if necessary
-        watchdog_check(azartd)
 
     # auto vote network objects as valid/invalid
     # check_object_validity(azartd)
