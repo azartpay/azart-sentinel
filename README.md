@@ -1,7 +1,5 @@
 # Azart Sentinel
 
-[![Build Status](https://travis-ci.org/azartpay/sentinel.svg?branch=master)](https://travis-ci.org/azartpay/sentinel)
-
 > An automated governance helper for Azart Masternodes.
 
 Sentinel is an autonomous agent for persisting, processing and automating Azart governance objects and tasks. It is a Python application which runs alongside the AzartCore instance on each Azart Masternode.
@@ -39,7 +37,7 @@ Make sure the local AzartCore daemon running is at least version 12.1 (120100)
 
 Clone the Sentinel repo and install Python dependencies.
 
-    $ git clone https://github.com/azartpay/sentinel.git && cd sentinel
+    $ git clone https://github.com/azartpay/azart-sentinel.git && cd azart-sentinel
     $ virtualenv ./venv
     $ ./venv/bin/pip install -r requirements.txt
 
@@ -53,9 +51,9 @@ Set up a crontab entry to call Sentinel every minute:
 
     $ crontab -e
 
-In the crontab editor, add the lines below, replacing '/path/to/sentinel' to the path where you cloned sentinel to:
+In the crontab editor, add the lines below, replacing '/path/to/azart-sentinel' to the path where you cloned sentinel to:
 
-    * * * * * cd /path/to/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+    * * * * * cd /path/to/azart-sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
 
 ### Test Configuration
 
